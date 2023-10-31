@@ -34,7 +34,7 @@ vec2 getNormalizedCoordinates(vec2 fragCoord, vec2 vSystemResolution, vec4 coord
 }
 
 void main() {
-	vec4 interval = vec4(-2.5, 2.5, -2.5, 2.5);
+	vec4 interval = vec4(-2.0, 2.0, -2.0, 2.0);
     vec2 normalizedCoords = getNormalizedCoordinates(gl_FragCoord.xy, resolution, interval);
     float iters = iterateMandelbrot(normalizedCoords);
     FragColor = vec4(iters); 
