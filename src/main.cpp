@@ -77,9 +77,15 @@ int main() {
     glEnableVertexAttribArray(0);
 
     while (!glfwWindowShouldClose(window)) {
+        int frameBufferWidth, frameBufferHeight;
+        glfwGetFramebufferSize(window, &frameBufferWidth, &frameBufferHeight);
+        glViewport(0, 0, frameBufferWidth, frameBufferHeight);
+
         glClear(GL_COLOR_BUFFER_BIT);
 
         glUseProgram(shaderProgram);
+        GLuint resolutionUniform = glGetUniformLocation(shaderProgram, "resolution");
+        glUniform2f(resolutionUniform, frameBufferWidth, frameBufferHeight);
         glBindVertexArray(VAO);
         glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
 
