@@ -35,19 +35,19 @@ int main() {
 
     glfwSetKeyCallback(window, key_callback);
 
-    GLShader* mandelbrotVertShader = new GLShader(GL_VERTEX_SHADER, "./src/shaders/mandelbrot.vs");
-    GLShader* mandelbrotFragShader = new GLShader(GL_FRAGMENT_SHADER, "./src/shaders/mandelbrot.fs");
+    GLShader mandelbrotVertShader(GL_VERTEX_SHADER, "./src/shaders/mandelbrot.vs");
+    GLShader mandelbrotFragShader(GL_FRAGMENT_SHADER, "./src/shaders/mandelbrot.fs");
 
     GLuint shaderProgram = glCreateProgram();
-    glAttachShader(shaderProgram, mandelbrotVertShader->getId());
-    glAttachShader(shaderProgram, mandelbrotFragShader->getId());
+    glAttachShader(shaderProgram, mandelbrotVertShader.getId());
+    glAttachShader(shaderProgram, mandelbrotFragShader.getId());
     glLinkProgram(shaderProgram);
     
     /* assuming no link errors... */
-    glDetachShader(shaderProgram, mandelbrotVertShader->getId());
-    glDetachShader(shaderProgram, mandelbrotFragShader->getId());
-    glDeleteShader(mandelbrotVertShader->getId());
-    glDeleteShader(mandelbrotFragShader->getId());
+    glDetachShader(shaderProgram, mandelbrotVertShader.getId());
+    glDetachShader(shaderProgram, mandelbrotFragShader.getId());
+    glDeleteShader(mandelbrotVertShader.getId());
+    glDeleteShader(mandelbrotFragShader.getId());
 
     float squareVertices[] = {
        1.0f, 1.0f,
